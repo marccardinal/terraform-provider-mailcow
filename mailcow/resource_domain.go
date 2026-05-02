@@ -98,8 +98,8 @@ func resourceDomain() *schema.Resource {
 			},
 			"rate_limit": {
 				Type:        schema.TypeString,
-				Description: "rate limit, decimal with unit s,m,h,d",
-				Default:     "10s",
+				Description: "rate limit, decimal with unit s,m,h,d (empty string to disable)",
+				Default:     "",
 				Optional:    true,
 			},
 			"restart_sogo": {
@@ -126,9 +126,7 @@ func resourceDomainCreate(ctx context.Context, d *schema.ResourceData, m interfa
 	mailcowCreateRequest := api.NewCreateDomainRequest()
 
 	exclude := []string{"rate_limit"}
-	value, ok := d.GetOk("rate_limit")
-	if ok {
-		rateLimit := value.(string)
+	if rateLimit := d.Get("rate_limit").(string); rateLimit != "" {
 		rateFrame := rateLimit[len(rateLimit)-1:]
 		mailcowCreateRequest.Set("rl_frame", rateFrame)
 		rateValue, err := strconv.Atoi(rateLimit[0 : len(rateLimit)-1])
@@ -175,15 +173,19 @@ func resourceDomainRead(ctx context.Context, d *schema.ResourceData, m interface
 	domain["maxquota"] = int(domain["max_quota_for_mbox"].(float64)) / (1024 * 1024)
 	domain["quota"] = int(domain["max_quota_for_domain"].(float64)) / (1024 * 1024)
 	domainRl := domain["rl"]
-	if domainRl != nil {
-		if reflect.ValueOf(domainRl).Kind() != reflect.Bool {
-			rl := make(map[string]string)
-			value := reflect.ValueOf(domainRl)
-			for _, key := range value.MapKeys() {
-				rl[fmt.Sprint(key)] = fmt.Sprint(value.MapIndex(key))
-			}
-			domain["rate_limit"] = rl["value"] + rl["frame"]
+	if domainRl != nil && reflect.ValueOf(domainRl).Kind() != reflect.Bool {
+		rl := make(map[string]string)
+		value := reflect.ValueOf(domainRl)
+		for _, key := range value.MapKeys() {
+			rl[fmt.Sprint(key)] = fmt.Sprint(value.MapIndex(key))
 		}
+		if rl["value"] != "" && rl["frame"] != "" {
+			domain["rate_limit"] = rl["value"] + rl["frame"]
+		} else {
+			domain["rate_limit"] = ""
+		}
+	} else {
+		domain["rate_limit"] = ""
 	}
 	domain["restart_sogo"], err = strconv.ParseBool(d.State().Attributes["restart_sogo"])
 	if err != nil {
@@ -206,15 +208,19 @@ func resourceDomainUpdate(ctx context.Context, d *schema.ResourceData, m interfa
 	mailcowUpdateRequest := api.NewUpdateDomainRequest()
 
 	if d.HasChange("rate_limit") {
-		iRateLimit := d.Get("rate_limit")
-		rateLimit := iRateLimit.(string)
-		rateFrame := rateLimit[len(rateLimit)-1:]
-		mailcowUpdateRequest.SetAttr("rl_frame", rateFrame)
-		rateValue, err := strconv.Atoi(rateLimit[0 : len(rateLimit)-1])
-		if err != nil {
-			return diag.FromErr(err)
+		rateLimit := d.Get("rate_limit").(string)
+		if rateLimit == "" {
+			mailcowUpdateRequest.SetAttr("rl_frame", "")
+			mailcowUpdateRequest.SetAttr("rl_value", "")
+		} else {
+			rateFrame := rateLimit[len(rateLimit)-1:]
+			mailcowUpdateRequest.SetAttr("rl_frame", rateFrame)
+			rateValue, err := strconv.Atoi(rateLimit[0 : len(rateLimit)-1])
+			if err != nil {
+				return diag.FromErr(err)
+			}
+			mailcowUpdateRequest.SetAttr("rl_value", float32(rateValue))
 		}
-		mailcowUpdateRequest.SetAttr("rl_value", float32(rateValue))
 	}
 
 	updateExclude := []string{
