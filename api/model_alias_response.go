@@ -37,4 +37,3 @@ func (o *MailcowResponseArray) GetRelayhostId() (*string, error) {
 	}
 	return o.GetFinalMsgItem(2), nil
 }
-

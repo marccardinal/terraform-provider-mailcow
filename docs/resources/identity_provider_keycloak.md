@@ -1,5 +1,5 @@
 ---
-page_title: "mailcow_identity_provider_keycloak Resource - terraform-provider-mailcow"
+page_title: "mailcow_identity_provider_keycloak Resource - mailcow"
 subcategory: ""
 description: |-
 ---

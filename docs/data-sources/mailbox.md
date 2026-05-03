@@ -1,5 +1,5 @@
 ---
-page_title: "mailcow_mailbox Data Source - terraform-provider-mailcow"
+page_title: "mailcow_mailbox Data Source - mailcow"
 subcategory: ""
 description: |-
 ---
