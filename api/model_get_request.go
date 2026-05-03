@@ -165,3 +165,21 @@ func (a *ApiService) MailcowGetDomainPolicy(ctx context.Context, domain string, 
 		id:         domain,
 	}
 }
+
+func (a *ApiService) MailcowGetRlDomain(ctx context.Context, domain string) ApiMailcowGetRequest {
+	return ApiMailcowGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/rl-domain/{id}",
+		id:         domain,
+	}
+}
+
+func (a *ApiService) MailcowGetRlMbox(ctx context.Context, mailbox string) ApiMailcowGetRequest {
+	return ApiMailcowGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/rl-mbox/{id}",
+		id:         mailbox,
+	}
+}

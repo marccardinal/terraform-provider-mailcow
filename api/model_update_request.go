@@ -94,6 +94,25 @@ func NewUpdateRelayhostRequest() *MailcowUpdateRequest {
 	this.ResourceName = "resourceRelayhost"
 	return &this
 }
+
+func NewUpdateRlDomainRequest() *MailcowUpdateRequest {
+	this := MailcowUpdateRequest{}
+	this.attr = make(map[string]interface{})
+	this.items = make([]string, 1)
+	this.endpoint = "/api/v1/edit/rl-domain/"
+	this.ResourceName = "resourceRatelimitDomain"
+	return &this
+}
+
+func NewUpdateRlMboxRequest() *MailcowUpdateRequest {
+	this := MailcowUpdateRequest{}
+	this.attr = make(map[string]interface{})
+	this.items = make([]string, 1)
+	this.endpoint = "/api/v1/edit/rl-mbox/"
+	this.ResourceName = "resourceRatelimitMailbox"
+	return &this
+}
+
 func (o *MailcowUpdateRequest) DeleteAttr(key string) {
 	log.Print("[TRACE] UpdateRequest Delete attr: ", key)
 	delete(o.attr, key)
