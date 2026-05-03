@@ -77,6 +77,15 @@ func NewUpdateIdentityProviderKeycloakRequest() *MailcowUpdateRequest {
 	return &this
 }
 
+func NewUpdateBccRequest() *MailcowUpdateRequest {
+	this := MailcowUpdateRequest{}
+	this.attr = make(map[string]interface{})
+	this.items = make([]string, 1)
+	this.endpoint = "/api/v1/edit/bcc"
+	this.ResourceName = "resourceBcc"
+	return &this
+}
+
 func NewUpdateRelayhostRequest() *MailcowUpdateRequest {
 	this := MailcowUpdateRequest{}
 	this.attr = make(map[string]interface{})
@@ -85,8 +94,6 @@ func NewUpdateRelayhostRequest() *MailcowUpdateRequest {
 	this.ResourceName = "resourceRelayhost"
 	return &this
 }
-
-
 func (o *MailcowUpdateRequest) DeleteAttr(key string) {
 	log.Print("[TRACE] UpdateRequest Delete attr: ", key)
 	delete(o.attr, key)

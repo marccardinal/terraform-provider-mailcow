@@ -75,14 +75,19 @@ func NewDeleteIdentityProviderKeycloakRequest() *MailcowDeleteRequest {
 	return &this
 }
 
+func NewDeleteBccRequest() *MailcowDeleteRequest {
+	this := MailcowDeleteRequest{}
+	this.endpoint = "/api/v1/delete/bcc"
+	this.ResourceName = "resourceBcc"
+	return &this
+}
+
 func NewDeleteRelayhostRequest() *MailcowDeleteRequest {
 	this := MailcowDeleteRequest{}
 	this.endpoint = "/api/v1/delete/relayhost"
 	this.ResourceName = "resourceRelayhost"
 	return &this
 }
-
-
 func (o *MailcowDeleteRequest) GetItem() *string {
 	log.Print("[TRACE] GetItem")
 	if !o.HasItem() {

@@ -36,6 +36,7 @@ func Provider() *schema.Provider {
 		},
 		ResourcesMap: map[string]*schema.Resource{
 			"mailcow_alias":                      resourceAlias(),
+			"mailcow_bcc":                        resourceBcc(),
 			"mailcow_domain":                     resourceDomain(),
 			"mailcow_domain_alias":               resourceDomainAlias(),
 			"mailcow_identity_provider_keycloak": resourceIdentityProviderKeycloak(),

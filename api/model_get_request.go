@@ -90,6 +90,23 @@ func (a *ApiService) MailcowGetIdentityProviderKeycloak(ctx context.Context) Api
 	}
 }
 
+func (a *ApiService) MailcowGetBcc(ctx context.Context, id string) ApiMailcowGetRequest {
+	return ApiMailcowGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/bcc/{id}",
+		id:         id,
+	}
+}
+
+func (a *ApiService) MailcowGetBccAll(ctx context.Context) ApiMailcowGetAllRequest {
+	return ApiMailcowGetAllRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/bcc/all",
+	}
+}
+
 func (a *ApiService) MailcowGetRelayhost(ctx context.Context, id string) ApiMailcowGetRequest {
 	return ApiMailcowGetRequest{
 		ApiService: a,
@@ -98,4 +115,3 @@ func (a *ApiService) MailcowGetRelayhost(ctx context.Context, id string) ApiMail
 		id:         id,
 	}
 }
-
