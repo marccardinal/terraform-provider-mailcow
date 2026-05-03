@@ -131,3 +131,37 @@ func (a *ApiService) MailcowGetTlsPolicyMapAll(ctx context.Context) ApiMailcowGe
 		endpoint:   "/api/v1/get/tls-policy-map/all",
 	}
 }
+
+func (a *ApiService) MailcowGetFwdhostAll(ctx context.Context) ApiMailcowGetAllRequest {
+	return ApiMailcowGetAllRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/fwdhost/all",
+	}
+}
+
+func (a *ApiService) MailcowGetRecipientMap(ctx context.Context, id string) ApiMailcowGetRequest {
+	return ApiMailcowGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/recipient_map/{id}",
+		id:         id,
+	}
+}
+
+func (a *ApiService) MailcowGetResourceAll(ctx context.Context) ApiMailcowGetAllRequest {
+	return ApiMailcowGetAllRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/resource/all",
+	}
+}
+
+func (a *ApiService) MailcowGetDomainPolicy(ctx context.Context, domain string, endpoint string) ApiMailcowGetRequest {
+	return ApiMailcowGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   endpoint,
+		id:         domain,
+	}
+}

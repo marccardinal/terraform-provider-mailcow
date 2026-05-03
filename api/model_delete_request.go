@@ -95,6 +95,35 @@ func NewDeleteTlsPolicyMapRequest() *MailcowDeleteRequest {
 	this.ResourceName = "resourceTlsPolicyMap"
 	return &this
 }
+
+func NewDeleteFwdhostRequest() *MailcowDeleteRequest {
+	this := MailcowDeleteRequest{}
+	this.endpoint = "/api/v1/delete/fwdhost"
+	this.ResourceName = "resourceFwdhost"
+	return &this
+}
+
+func NewDeleteRecipientMapRequest() *MailcowDeleteRequest {
+	this := MailcowDeleteRequest{}
+	this.endpoint = "/api/v1/delete/recipient_map"
+	this.ResourceName = "resourceRecipientMap"
+	return &this
+}
+
+func NewDeleteResourceRequest() *MailcowDeleteRequest {
+	this := MailcowDeleteRequest{}
+	this.endpoint = "/api/v1/delete/resource"
+	this.ResourceName = "resourceResource"
+	return &this
+}
+
+func NewDeleteDomainPolicyRequest() *MailcowDeleteRequest {
+	this := MailcowDeleteRequest{}
+	this.endpoint = "/api/v1/delete/domain-policy"
+	this.ResourceName = "resourceDomainPolicy"
+	return &this
+}
+
 func (o *MailcowDeleteRequest) GetItem() *string {
 	log.Print("[TRACE] GetItem")
 	if !o.HasItem() {
