@@ -112,6 +112,39 @@ func NewCreateTlsPolicyMapRequest() *MailcowCreateRequest {
 	this.ResourceName = "resourceTlsPolicyMap"
 	return &this
 }
+
+func NewCreateFwdhostRequest() *MailcowCreateRequest {
+	this := MailcowCreateRequest{}
+	this.payload = make(map[string]interface{})
+	this.endpoint = "/api/v1/add/fwdhost"
+	this.ResourceName = "resourceFwdhost"
+	return &this
+}
+
+func NewCreateRecipientMapRequest() *MailcowCreateRequest {
+	this := MailcowCreateRequest{}
+	this.payload = make(map[string]interface{})
+	this.endpoint = "/api/v1/add/recipient_map"
+	this.ResourceName = "resourceRecipientMap"
+	return &this
+}
+
+func NewCreateResourceRequest() *MailcowCreateRequest {
+	this := MailcowCreateRequest{}
+	this.payload = make(map[string]interface{})
+	this.endpoint = "/api/v1/add/resource"
+	this.ResourceName = "resourceResource"
+	return &this
+}
+
+func NewCreateDomainPolicyRequest() *MailcowCreateRequest {
+	this := MailcowCreateRequest{}
+	this.payload = make(map[string]interface{})
+	this.endpoint = "/api/v1/add/domain-policy"
+	this.ResourceName = "resourceDomainPolicy"
+	return &this
+}
+
 func (o *MailcowCreateRequest) Get(key string) interface{} {
 	if !o.Has(key) {
 		var ret bool
