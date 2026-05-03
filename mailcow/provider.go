@@ -46,6 +46,7 @@ func Provider() *schema.Provider {
 			"mailcow_oauth2_client":              resourceOAuth2Client(),
 			"mailcow_relayhost":                  resourceRelayhost(),
 			"mailcow_tls_policy_map":             resourceTlsPolicyMap(),
+			"mailcow_domain_admin":               resourceDomainAdmin(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"mailcow_domain":  dataSourceDomain(),
