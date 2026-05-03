@@ -88,6 +88,13 @@ func NewDeleteRelayhostRequest() *MailcowDeleteRequest {
 	this.ResourceName = "resourceRelayhost"
 	return &this
 }
+
+func NewDeleteTlsPolicyMapRequest() *MailcowDeleteRequest {
+	this := MailcowDeleteRequest{}
+	this.endpoint = "/api/v1/delete/tls-policy-map"
+	this.ResourceName = "resourceTlsPolicyMap"
+	return &this
+}
 func (o *MailcowDeleteRequest) GetItem() *string {
 	log.Print("[TRACE] GetItem")
 	if !o.HasItem() {

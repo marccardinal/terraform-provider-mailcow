@@ -115,3 +115,20 @@ func (a *ApiService) MailcowGetRelayhost(ctx context.Context, id string) ApiMail
 		id:         id,
 	}
 }
+
+func (a *ApiService) MailcowGetTlsPolicyMap(ctx context.Context, id string) ApiMailcowGetRequest {
+	return ApiMailcowGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/tls-policy-map/{id}",
+		id:         id,
+	}
+}
+
+func (a *ApiService) MailcowGetTlsPolicyMapAll(ctx context.Context) ApiMailcowGetAllRequest {
+	return ApiMailcowGetAllRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/tls-policy-map/all",
+	}
+}
