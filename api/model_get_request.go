@@ -106,3 +106,12 @@ func (a *ApiService) MailcowGetBccAll(ctx context.Context) ApiMailcowGetAllReque
 		endpoint:   "/api/v1/get/bcc/all",
 	}
 }
+
+func (a *ApiService) MailcowGetRelayhost(ctx context.Context, id string) ApiMailcowGetRequest {
+	return ApiMailcowGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/relayhost/{id}",
+		id:         id,
+	}
+}

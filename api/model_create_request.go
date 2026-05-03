@@ -97,6 +97,13 @@ func NewCreateBccRequest() *MailcowCreateRequest {
 	return &this
 }
 
+func NewCreateRelayhostRequest() *MailcowCreateRequest {
+	this := MailcowCreateRequest{}
+	this.payload = make(map[string]interface{})
+	this.endpoint = "/api/v1/add/relayhost"
+	this.ResourceName = "resourceRelayhost"
+	return &this
+}
 func (o *MailcowCreateRequest) Get(key string) interface{} {
 	if !o.Has(key) {
 		var ret bool
