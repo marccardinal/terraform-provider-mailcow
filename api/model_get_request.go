@@ -73,12 +73,11 @@ func (a *ApiService) MailcowGetOAuth2Clients(ctx context.Context) ApiMailcowGetA
 	}
 }
 
-func (a *ApiService) MailcowGetDomainAdmin(ctx context.Context, id string) ApiMailcowGetRequest {
-	return ApiMailcowGetRequest{
+func (a *ApiService) MailcowGetDomainAdminAll(ctx context.Context) ApiMailcowGetAllRequest {
+	return ApiMailcowGetAllRequest{
 		ApiService: a,
 		ctx:        ctx,
-		endpoint:   "/api/v1/get/alias/{id}",
-		id:         id,
+		endpoint:   "/api/v1/get/domain-admin/all",
 	}
 }
 
