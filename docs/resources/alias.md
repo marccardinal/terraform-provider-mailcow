@@ -1,5 +1,5 @@
 ---
-page_title: "mailcow_alias Resource - terraform-provider-mailcow"
+page_title: "mailcow_alias Resource - mailcow"
 subcategory: ""
 description: |-
 ---

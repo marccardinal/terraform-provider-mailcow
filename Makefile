@@ -1,9 +1,9 @@
 TEST?=$$(go list ./... | grep -v 'vendor')
 HOSTNAME=registry.terraform.io
-NAMESPACE=l-with
+NAMESPACE=marccardinal
 NAME=mailcow
 BINARY=terraform-provider-${NAME}
-VERSION=0.6.1
+VERSION=1.0.0
 OS_ARCH=darwin_arm64
 
 default: install

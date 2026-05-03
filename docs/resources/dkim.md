@@ -1,5 +1,5 @@
 ---
-page_title: "mailcow_dkim Resource - terraform-provider-mailcow"
+page_title: "mailcow_dkim Resource - mailcow"
 subcategory: ""
 description: |-
 ---

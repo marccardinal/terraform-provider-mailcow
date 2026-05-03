@@ -1,5 +1,5 @@
 ---
-page_title: "mailcow_domain Resource - terraform-provider-mailcow"
+page_title: "mailcow_domain Resource - mailcow"
 subcategory: ""
 description: |-
 ---
@@ -34,7 +34,7 @@ resource "mailcow_domain" "demo" {
 - `mailboxes` (Number) limit count of mailboxes associated with this domain
 - `maxquota` (Number) maximum quota per mailbox
 - `quota` (Number) maximum quota for this domain (for all mailboxes in sum)
-- `rate_limit` (String) rate limit, decimal with unit s,m,h,d
+- `rate_limit` (String) rate limit, decimal with unit s,m,h,d (empty string to disable)
 - `relay_all_recipients` (Boolean) if not, them you have to create "dummy" mailbox for each address to relay
 - `relay_unknown_only` (Boolean) Relay non-existing mailboxes only. Existing mailboxes will be delivered locally.
 - `restart_sogo` (Boolean) if the SOGo container should be restarted after adding the domain

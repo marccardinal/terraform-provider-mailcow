@@ -1,5 +1,5 @@
 ---
-page_title: "mailcow_syncjob Resource - terraform-provider-mailcow"
+page_title: "mailcow_syncjob Resource - mailcow"
 subcategory: ""
 description: |-
 ---

@@ -1,5 +1,5 @@
 ---
-page_title: "mailcow_mailbox Resource - terraform-provider-mailcow"
+page_title: "mailcow_mailbox Resource - mailcow"
 subcategory: ""
 description: |-
 ---

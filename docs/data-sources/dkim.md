@@ -1,5 +1,5 @@
 ---
-page_title: "mailcow_dkim Data Source - terraform-provider-mailcow"
+page_title: "mailcow_dkim Data Source - mailcow"
 subcategory: ""
 description: |-
 ---

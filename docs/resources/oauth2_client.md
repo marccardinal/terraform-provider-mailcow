@@ -1,5 +1,5 @@
 ---
-page_title: "mailcow_oauth2_client Resource - terraform-provider-mailcow"
+page_title: "mailcow_oauth2_client Resource - mailcow"
 subcategory: ""
 description: |-
 ---
