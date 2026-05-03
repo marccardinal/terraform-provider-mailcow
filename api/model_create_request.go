@@ -89,6 +89,14 @@ func NewCreateIdentityProviderKeycloakRequest() *MailcowCreateRequest {
 	return &this
 }
 
+func NewCreateBccRequest() *MailcowCreateRequest {
+	this := MailcowCreateRequest{}
+	this.payload = make(map[string]interface{})
+	this.endpoint = "/api/v1/add/bcc"
+	this.ResourceName = "resourceBcc"
+	return &this
+}
+
 func (o *MailcowCreateRequest) Get(key string) interface{} {
 	if !o.Has(key) {
 		var ret bool
