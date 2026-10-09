@@ -1,6 +1,8 @@
 package api
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"log"
 	"reflect"
@@ -22,6 +24,17 @@ type MailcowResponse struct {
 func NewMailcowResponse() *MailcowResponseArray {
 	this := MailcowResponseArray{}
 	return &this
+}
+
+// UnmarshalJSON accepts a single object as well as an array: some endpoints answer
+// with a bare object, e.g. add/mta-sts on success: {"type":"success","msg":"Task completed"}.
+func (o *MailcowResponseArray) UnmarshalJSON(data []byte) error {
+	type plain MailcowResponseArray // no methods, so no recursion
+	trimmed := bytes.TrimSpace(data)
+	if len(trimmed) > 0 && trimmed[0] == '{' {
+		trimmed = append(append([]byte{'['}, trimmed...), ']')
+	}
+	return json.Unmarshal(trimmed, (*plain)(o))
 }
 
 func (o *MailcowResponseArray) IsSlice() bool {

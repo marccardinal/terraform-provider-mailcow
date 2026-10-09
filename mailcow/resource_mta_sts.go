@@ -170,7 +170,10 @@ func resourceMtaStsUpdate(ctx context.Context, d *schema.ResourceData, m interfa
 func resourceMtaStsDelete(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
 	c := m.(*APIClient)
 
+	// Mailcow fills omitted fields from the stored policy, but returns the version
+	// as "STSv1" and then rejects it (version_invalid): always send it.
 	mailcowUpdateRequest := api.NewUpdateMtaStsRequest()
+	mailcowUpdateRequest.SetAttr("version", "stsv1")
 	mailcowUpdateRequest.SetAttr("active", false)
 	mailcowUpdateRequest.SetItem(d.Id())
 
