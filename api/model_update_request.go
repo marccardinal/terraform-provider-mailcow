@@ -113,6 +113,15 @@ func NewUpdateRlMboxRequest() *MailcowUpdateRequest {
 	return &this
 }
 
+func NewUpdateMtaStsRequest() *MailcowUpdateRequest {
+	this := MailcowUpdateRequest{}
+	this.attr = make(map[string]interface{})
+	this.items = make([]string, 1)
+	this.endpoint = "/api/v1/edit/mta-sts"
+	this.ResourceName = "resourceMtaSts"
+	return &this
+}
+
 func (o *MailcowUpdateRequest) DeleteAttr(key string) {
 	log.Print("[TRACE] UpdateRequest Delete attr: ", key)
 	delete(o.attr, key)

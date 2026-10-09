@@ -145,6 +145,14 @@ func NewCreateDomainPolicyRequest() *MailcowCreateRequest {
 	return &this
 }
 
+func NewCreateMtaStsRequest() *MailcowCreateRequest {
+	this := MailcowCreateRequest{}
+	this.payload = make(map[string]interface{})
+	this.endpoint = "/api/v1/add/mta-sts"
+	this.ResourceName = "resourceMtaSts"
+	return &this
+}
+
 func (o *MailcowCreateRequest) Get(key string) interface{} {
 	if !o.Has(key) {
 		var ret bool
