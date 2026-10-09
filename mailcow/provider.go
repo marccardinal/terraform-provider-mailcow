@@ -53,6 +53,7 @@ func Provider() *schema.Provider {
 			"mailcow_domain_policy":              resourceDomainPolicy(),
 			"mailcow_rl_domain":                  resourceRatelimitDomain(),
 			"mailcow_rl_mailbox":                 resourceRatelimitMailbox(),
+			"mailcow_mta_sts":                    resourceMtaSts(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"mailcow_domain":  dataSourceDomain(),
@@ -66,6 +67,9 @@ func Provider() *schema.Provider {
 // APIClient Hold the API Client and any relevant configuration
 type APIClient struct {
 	client *api.APIClient
+	// hostName and httpClient are used for requests outside the API, like the public MTA-STS policy.
+	hostName   string
+	httpClient *http.Client
 }
 
 func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}, diag.Diagnostics) {
@@ -93,6 +97,8 @@ func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}
 	apiClient := api.NewAPIClient(config)
 
 	return &APIClient{
-		client: apiClient,
+		client:     apiClient,
+		hostName:   hostName,
+		httpClient: client,
 	}, diags
 }
