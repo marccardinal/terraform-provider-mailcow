@@ -183,3 +183,20 @@ func (a *ApiService) MailcowGetRlMbox(ctx context.Context, mailbox string) ApiMa
 		id:         mailbox,
 	}
 }
+
+func (a *ApiService) MailcowGetRspamdSetting(ctx context.Context, id string) ApiMailcowGetRequest {
+	return ApiMailcowGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/rsetting/{id}",
+		id:         id,
+	}
+}
+
+func (a *ApiService) MailcowGetRspamdSettingAll(ctx context.Context) ApiMailcowGetAllRequest {
+	return ApiMailcowGetAllRequest{
+		ApiService: a,
+		ctx:        ctx,
+		endpoint:   "/api/v1/get/rsetting/all",
+	}
+}

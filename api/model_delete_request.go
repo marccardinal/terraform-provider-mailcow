@@ -163,3 +163,10 @@ func MailcowDeleteExecute(ctx context.Context, c *APIClient, mailcowDeleteReques
 	response, _, err := c.Api.MailcowDeleteExecute(request)
 	return response, err
 }
+
+func NewDeleteRspamdSettingRequest() *MailcowDeleteRequest {
+	this := MailcowDeleteRequest{}
+	this.endpoint = "/api/v1/delete/rsetting"
+	this.ResourceName = "resourceRspamdSetting"
+	return &this
+}

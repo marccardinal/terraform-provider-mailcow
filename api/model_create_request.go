@@ -242,3 +242,11 @@ func (o MailcowCreateRequest) MarshalJSON(requestSpec map[string]interface{}) ([
 	}
 	return json.Marshal(toSerialize)
 }
+
+func NewCreateRspamdSettingRequest() *MailcowCreateRequest {
+	this := MailcowCreateRequest{}
+	this.payload = make(map[string]interface{})
+	this.endpoint = "/api/v1/add/rsetting"
+	this.ResourceName = "resourceRspamdSetting"
+	return &this
+}
