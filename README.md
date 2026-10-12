@@ -47,6 +47,7 @@ provider "mailcow" {
 | `mailcow_resource` | CalDAV booking resource (location, group, or thing) |
 | `mailcow_rl_domain` | Outbound rate limit for a domain |
 | `mailcow_rl_mailbox` | Outbound rate limit for a mailbox |
+| `mailcow_rspamd_setting` | Rspamd settings map rule |
 | `mailcow_syncjob` | IMAP sync job |
 | `mailcow_tls_policy_map` | Outgoing TLS policy map override |
 

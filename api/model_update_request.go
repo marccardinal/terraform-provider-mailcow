@@ -210,3 +210,12 @@ func MailcowUpdateExecute(ctx context.Context, c *APIClient, mailcowUpdateReques
 	response, _, err := c.Api.MailcowUpdateExecute(request)
 	return response, err
 }
+
+func NewUpdateRspamdSettingRequest() *MailcowUpdateRequest {
+	this := MailcowUpdateRequest{}
+	this.attr = make(map[string]interface{})
+	this.items = make([]string, 1)
+	this.endpoint = "/api/v1/edit/rsetting"
+	this.ResourceName = "resourceRspamdSetting"
+	return &this
+}

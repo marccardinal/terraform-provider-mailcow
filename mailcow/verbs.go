@@ -1,9 +1,11 @@
 package mailcow
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
@@ -57,9 +59,21 @@ func readAllRequest(request api.ApiMailcowGetAllRequest) ([]map[string]interface
 	if err != nil {
 		return nil, err
 	}
+	return decodeList(response.Body)
+}
+
+// decodeList decodes a Mailcow list response. Mailcow answers an empty list
+// with {} instead of [] (process_get_return in json_api.php).
+func decodeList(body io.Reader) ([]map[string]interface{}, error) {
+	var raw json.RawMessage
+	if err := json.NewDecoder(body).Decode(&raw); err != nil {
+		return nil, err
+	}
 	result := make([]map[string]interface{}, 0)
-	err = json.NewDecoder(response.Body).Decode(&result)
-	if err != nil {
+	if string(bytes.TrimSpace(raw)) == "{}" {
+		return result, nil
+	}
+	if err := json.Unmarshal(raw, &result); err != nil {
 		return nil, err
 	}
 	return result, nil
